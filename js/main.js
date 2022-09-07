@@ -33,24 +33,36 @@ const checkForStraight = (arr) => {
 //takes roll array and returns score value
 const convertToScore = (dice) => {
     let sdice = dice.slice().sort();
-    switch(sdice.length) {
 
-        case 6:
-            if (checkForStraight(sdice)) return 300;
-            if (checkForOne(sdice)) return 1000;
-            if (sdice[0] == sdice[1] && sdice[2] == sdice[3] && sdice[4] == sdice[5]) {
-                return 100;
-            }
-            break;
-        
-        case 5:
-            if (checkForOne(sdice)) return sdice[0] == 1 ? 400 : sdice[0] * 40;
-            break;
-
-
-        default:
-            return 0;
-
+    if(checkForOne(sdice)) {
+        if(sdice.length == 6) return 1000;
+        else if (sdice[0] == 1){
+            
+        }
     }
+
+
+
+
+
+
+    // switch(sdice.length) {
+
+    //     case 6:
+    //         if (checkForStraight(sdice)) return 300;
+    //         if (checkForOne(sdice)) return 1000;
+    //         if (sdice[0] == sdice[1] && sdice[2] == sdice[3] && sdice[4] == sdice[5]) {
+    //             return 100;
+    //         }
+    //         break;
+        
+    //     case 5:
+    //         if (checkForOne(sdice)) return sdice[0] == 1 ? 400 : sdice[0] * 40;
+    //         break;
+
+
+    //     default:
+    //         return 0;
+
     return 0;
 }
