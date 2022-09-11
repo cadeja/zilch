@@ -88,21 +88,10 @@ header {
   background-color: #3f4253;
 }
 
-/* .die > div {
-  border: 1px solid red;
-} */
 
-/* DICE */
-/* t = top, c = center, b = bottom, l = left, r = right */
-
-/* .d-tl {
-  grid-area: 1 / 1 / 2 / 2;
+.inactive, .inactive:hover {
+  background-color: #47484e;
 }
-
-.d-cc {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-} */
 
 
 
