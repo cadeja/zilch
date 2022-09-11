@@ -1,25 +1,15 @@
 
 
-// rolls n number of dice (1-6)
-// returns array
-const rollDice = (n) => {
-    arr = [];
-    for (let i = 1; i <= n; i++){
-        arr.push(Math.floor(Math.random() * 6) + 1);
-    }
-    return arr;
-};
 
 
 
-// const checkHand = (dice) => {
 
-// };
-
+// returns true if array has only one unique value
 const checkForOne = (arr) => {
     return (new Set(arr).size === 1);
 }
 
+// checks for [1,2,3,4,5,6] array
 const checkForStraight = (arr) => {
     if (arr.length != 6) return false;
     
@@ -31,6 +21,7 @@ const checkForStraight = (arr) => {
 
 
 //takes roll array and returns score value
+// INCOMPLETE
 const convertToScore = (dice) => {
     let sdice = dice.slice().sort();
 
@@ -40,29 +31,77 @@ const convertToScore = (dice) => {
             
         }
     }
-
-
-
-
-
-
-    // switch(sdice.length) {
-
-    //     case 6:
-    //         if (checkForStraight(sdice)) return 300;
-    //         if (checkForOne(sdice)) return 1000;
-    //         if (sdice[0] == sdice[1] && sdice[2] == sdice[3] && sdice[4] == sdice[5]) {
-    //             return 100;
-    //         }
-    //         break;
-        
-    //     case 5:
-    //         if (checkForOne(sdice)) return sdice[0] == 1 ? 400 : sdice[0] * 40;
-    //         break;
-
-
-    //     default:
-    //         return 0;
-
     return 0;
 }
+
+const displayCtrl = (() => {
+
+    // takes arr and updates display of dice
+    // handles dice look
+    const updateDice = (arr) => {
+        const dice = document.querySelectorAll('.die');
+        for (let i = 0; i < arr.length; i++) {
+
+            switch(arr[i]) {
+                case 1:
+                    dice[i].innerHTML = '<div></div><div></div><div></div>';
+                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                    dice[i].innerHTML += '<div></div><div></div><div></div>';
+                    break;
+                case 2:
+                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div></div>';
+                    dice[i].innerHTML += '<div></div><div></div><div></div>';
+                    dice[i].innerHTML += '<div></div><div></div><div>&#x2B24;</div>';
+                    break;
+                case 3:
+                    dice[i].innerHTML = '<div></div><div></div><div>&#x2B24;</div>';
+                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div></div>';
+                    break;
+                case 4:
+                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    dice[i].innerHTML += '<div></div><div></div><div></div>';
+                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    break;
+                case 5:
+                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    break;
+                case 6:
+                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                    break;
+
+            }
+
+            
+        }
+    }
+
+    return {
+        updateDice
+    }
+
+})();
+
+const gameCtrl = (() => {
+
+    // rolls n number of dice (1-6)
+    // returns array
+    const rollDice = (n) => {
+        arr = [];
+        for (let i = 1; i <= n; i++){
+            arr.push(Math.floor(Math.random() * 6) + 1);
+        }
+        return arr;
+    }
+    
+    const btnRollDice = document.querySelector('#rolldice');
+    btnRollDice.addEventListener('click', (e) => {
+        e.preventDefault();
+        displayCtrl.updateDice(rollDice(6));
+    })
+    
+})();
