@@ -41,39 +41,40 @@ const displayCtrl = (() => {
     const updateDice = (arr) => {
         const dice = document.querySelectorAll('.die');
         for (let i = 0; i < arr.length; i++) {
+            if (!dice[i].classList.contains('inactive')){
 
-            switch(arr[i]) {
-                case 1:
-                    dice[i].innerHTML = '<div></div><div></div><div></div>';
-                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
-                    dice[i].innerHTML += '<div></div><div></div><div></div>';
-                    break;
-                case 2:
-                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div></div>';
-                    dice[i].innerHTML += '<div></div><div></div><div></div>';
-                    dice[i].innerHTML += '<div></div><div></div><div>&#x2B24;</div>';
-                    break;
-                case 3:
-                    dice[i].innerHTML = '<div></div><div></div><div>&#x2B24;</div>';
-                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
-                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div></div>';
-                    break;
-                case 4:
-                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    dice[i].innerHTML += '<div></div><div></div><div></div>';
-                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    break;
-                case 5:
-                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
-                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    break;
-                case 6:
-                    dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
-                    break;
-
+                switch(arr[i]) {
+                    case 1:
+                        dice[i].innerHTML = '<div></div><div></div><div></div>';
+                        dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                        dice[i].innerHTML += '<div></div><div></div><div></div>';
+                        break;
+                    case 2:
+                        dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div></div>';
+                        dice[i].innerHTML += '<div></div><div></div><div></div>';
+                        dice[i].innerHTML += '<div></div><div></div><div>&#x2B24;</div>';
+                        break;
+                    case 3:
+                        dice[i].innerHTML = '<div></div><div></div><div>&#x2B24;</div>';
+                        dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                        dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div></div>';
+                        break;
+                    case 4:
+                        dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        dice[i].innerHTML += '<div></div><div></div><div></div>';
+                        dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        break;
+                    case 5:
+                        dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        dice[i].innerHTML += '<div></div><div>&#x2B24;</div><div></div>';
+                        dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        break;
+                    case 6:
+                        dice[i].innerHTML = '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        dice[i].innerHTML += '<div>&#x2B24;</div><div></div><div>&#x2B24;</div>';
+                        break;
+                }
             }
 
             
@@ -87,6 +88,7 @@ const displayCtrl = (() => {
 })();
 
 const gameCtrl = (() => {
+
 
     // rolls n number of dice (1-6)
     // returns array
@@ -102,6 +104,14 @@ const gameCtrl = (() => {
     btnRollDice.addEventListener('click', (e) => {
         e.preventDefault();
         displayCtrl.updateDice(rollDice(6));
+    })
+
+    // setting inactive state for dice on click
+    const dieAll = document.querySelectorAll('.die');
+    dieAll.forEach(die => {
+        die.addEventListener('click', () => {
+            die.classList.add('inactive');
+        })
     })
     
 })();
